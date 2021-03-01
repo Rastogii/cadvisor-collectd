@@ -8,7 +8,10 @@ from abc import ABCMeta, abstractmethod
 
 import json
 import yaml
-import urllib2
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
 import socket
 import docker
 import re
