@@ -3,7 +3,7 @@ MAINTAINER matt maier <mgmaier@gmail.com>
 
 COPY src/apk-installer /
 RUN chmod +x /apk-installer
-
+RUN apk --update add python
 RUN /apk-installer collectd collectd-python collectd-network py-pip py-yaml
 RUN pip install docker-py urllib2
 
