@@ -9,9 +9,9 @@ from abc import ABCMeta, abstractmethod
 import json
 import yaml
 try:
-    import urllib.request as urllib2
-except ImportError:
     import urllib2
+except ImportError:
+    import urllib3
 import socket
 import docker
 import re
