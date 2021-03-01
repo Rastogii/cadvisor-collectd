@@ -44,7 +44,7 @@ class CAdvisor(object):
             # self.log_info('Parsing configuration {}'.format(self.config_file))
             f = open(self.config_file, 'r')
             self.config = yaml.load(f)
-        except Exception, e:
+        except Exception as e:
             self.log_error('Unable to load configuration "{}": {}'.format(self.config_file, e))
             sys.exit(1)
 
@@ -224,10 +224,10 @@ class CAdvisor(object):
                     if '/tcp' in exposed_port:
                         port = exposed_port.split('/')[0]
                         break
-            except docker.errors.APIError, e:
+            except docker.errors.APIError as e:
                 self.log_error('Error retrieving container from docker: {}'.format(e))
                 sys.exit(1)
-            except IOError, e:
+            except IOError as e:
                 self.log_error('Error connecting to docker socket "{}": {}'.format(self.docker_socket, e))
                 sys.exit(1)
         else:
@@ -257,10 +257,10 @@ class CAdvisor(object):
             # TODO check the docker-py code for this API call to ensure all=False does force only running
             #
             self.docker_container_list = cli.containers(all=False)
-        except docker.errors.APIError, e:
+        except docker.errors.APIError as e:
             self.log_error('Error retrieving from docker: {}'.format(e))
             sys.exit(1)
-        except IOError, e:
+        except IOError as e:
             self.log_error('Error connecting to docker socket "{}": {}'.format(self.docker_socket, e))
             sys.exit(1)
 
@@ -295,7 +295,7 @@ class CAdvisor(object):
         try:
             response = urllib2.urlopen(url, None, 5)
             stats = json.loads(response.read())
-        except urllib2.URLError, e:
+        except urllib2.URLError as e:
             if hasattr(e, 'reason'):
                 self.log_error("Failed to reach server, reason {}".format(e.reason))
             elif hasattr(e, 'code'):
